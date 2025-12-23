@@ -1,0 +1,77 @@
+<div class="dashboard">
+  <div class="header">
+    <h2>Mis cursos</h2>
+  </div>
+
+  <p *ngIf="loading()">Cargando mis cursos...</p>
+
+  <p class="error" *ngIf="errorMsg()">
+    {{ errorMsg() }}
+  </p>
+
+  <!-- ✅ ACTIVOS / INSCRITOS -->
+  <section *ngIf="!loading() && activeCourses().length > 0" class="section">
+    <h3 class="section-title">Cursos activos</h3>
+
+    <div class="grid">
+      <article class="card" *ngFor="let c of activeCourses(); trackBy: trackById">
+        <div class="top">
+          <span class="badge">{{ c.module }}</span>
+          <span class="duration">{{ c.duration }}h</span>
+        </div>
+
+        <h3>{{ c.title }}</h3>
+        <p class="desc">{{ c.description }}</p>
+
+        <span class="status status-registered">REGISTERED</span>
+
+        <button
+          type="button"
+          class="btn-complete"
+          (click)="markAsCompleted(c)"
+          [disabled]="completingId() === c.id"
+        >
+          {{ completingId() === c.id ? 'Marcando...' : 'Marcar como completado' }}
+        </button>
+      </article>
+    </div>
+  </section>
+
+  <!-- ✅ FINALIZADOS -->
+  <section *ngIf="!loading() && completedCourses().length > 0" class="section">
+    <h3 class="section-title">Cursos finalizados</h3>
+
+    <div class="grid">
+      <article class="card" *ngFor="let c of completedCourses(); trackBy: trackById">
+        <div class="top">
+          <span class="badge">{{ c.module }}</span>
+          <span class="duration">{{ c.duration }}h</span>
+        </div>
+
+        <h3>{{ c.title }}</h3>
+        <p class="desc">{{ c.description }}</p>
+
+        <span class="status status-completed">COMPLETED</span>
+
+        <button
+          type="button"
+          class="btn-complete"
+          (click)="viewBadge(c.id)"
+          [disabled]="completingId() === c.id"
+        >
+          {{ completingId() === c.id ? 'Cargando...' : 'Ver Insignia' }}
+        </button>
+
+      </article>
+    </div>
+  </section>
+
+  <p *ngIf="!loading() && myCourses().length === 0 && !errorMsg()">
+    Aún no tienes cursos asignados.
+  </p>
+
+  <!-- ✅ SI TIENE CURSOS PERO NO CAEN EN ESAS CATEGORÍAS -->
+  <p *ngIf="!loading() && myCourses().length > 0 && activeCourses().length === 0 && completedCourses().length === 0">
+    No hay cursos en estado REGISTERED o COMPLETED.
+  </p>
+</div>

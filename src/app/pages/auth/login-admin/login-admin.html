@@ -1,0 +1,58 @@
+<div class="auth">
+  <div class="auth-card auth-card-admin">
+    <div class="auth-body">
+
+      <div class="auth-header">
+        <h1 class="auth-title auth-title-admin">Login Admin</h1>
+        <a routerLink="/home" class="btn-back">Volver</a>
+      </div>
+
+      <div class="alert-warning">
+        Acceso solo para administradores.
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="login()">
+
+        <div class="field">
+          <label class="label">Correo</label>
+          <input
+            class="input"
+            formControlName="email"
+            placeholder="admin@dominio.com"
+          />
+          <div class="error-text" *ngIf="submitted && f['email'].errors">
+            <div *ngIf="f['email'].errors?.['required']">Campo obligatorio.</div>
+            <div *ngIf="f['email'].errors?.['email']">Correo inválido.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Contraseña</label>
+          <input
+            type="password"
+            class="input"
+            formControlName="password"
+            placeholder="******"
+          />
+          <div class="error-text" *ngIf="submitted && f['password'].errors">
+            <div *ngIf="f['password'].errors?.['required']">Campo obligatorio.</div>
+          </div>
+        </div>
+
+        <div *ngIf="errorMsg()" class="alert-error">
+          {{ errorMsg() }}
+        </div>
+
+        <button type="submit" class="btn-admin">
+          Ingresar como Admin
+        </button>
+
+        <div class="auth-links">
+          <a routerLink="/login/user">Soy usuario</a>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

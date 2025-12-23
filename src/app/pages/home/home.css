@@ -1,0 +1,98 @@
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  padding: 20px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+/* ===== CARD ===== */
+.home-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+  border: 1px solid #f1f5f9;
+}
+
+/* ===== TITULO ===== */
+.home-card h1 {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+/* ===== SUBTITULO ===== */
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+/* ===== ACCIONES ===== */
+.actions {
+  display: grid;
+  gap: 14px;
+}
+
+/* ===== BOTONES BASE ===== */
+.btn {
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* ===== BOTON PRIMARIO ===== */
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* ===== BOTON USUARIO ===== */
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* ===== BOTON ADMIN ===== */
+.btn-success-outline {
+  background: #ffffff;
+  color: #059669;
+  border: 2px solid #10b981;
+}
+
+.btn-success-outline:hover {
+  background: #ecfdf5;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .home-card {
+    padding: 28px 20px;
+  }
+
+  .home-card h1 {
+    font-size: 22px;
+  }
+}

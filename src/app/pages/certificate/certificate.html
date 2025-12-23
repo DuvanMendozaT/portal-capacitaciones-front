@@ -1,0 +1,58 @@
+<div class="certificate-page">
+
+  <!-- LOADING -->
+  <p class="loading" *ngIf="loading()">Generando certificado...</p>
+
+  <!-- ERROR -->
+  <p class="error" *ngIf="errorMsg()">
+    {{ errorMsg() }}
+  </p>
+
+  <!-- CERTIFICADO -->
+  <section class="certificate" *ngIf="!loading() && course()">
+
+    <!-- INSIGNIA -->
+    <div class="badge-container">
+      <img
+        class="badge"
+        [src]="badgeImgUrl"
+        alt="Insignia de finalización"
+      />
+    </div>
+
+    <!-- TITULO -->
+    <h1 class="title">Certificado de Finalización</h1>
+
+    <p class="subtitle">Se certifica que</p>
+
+    <!-- ESTUDIANTE -->
+    <h2 class="student-name">
+      {{ studentName() }}
+    </h2>
+
+    <p class="subtitle">ha completado satisfactoriamente el curso</p>
+
+    <!-- CURSO -->
+    <h2 class="course-title">
+      {{ course()!.title }}
+    </h2>
+
+    <!-- METADATA -->
+    <div class="course-info">
+      <span>
+        <strong>Módulo:</strong> {{ course()!.module }}
+      </span>
+      <span>
+        <strong>Duración:</strong> {{ course()!.duration }} horas
+      </span>
+    </div>
+
+    <!-- FECHA -->
+    <p class="date">
+      Fecha de finalización:
+      <strong>{{ completedAt() }}</strong>
+    </p>
+
+  </section>
+
+</div>

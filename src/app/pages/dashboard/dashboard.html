@@ -1,0 +1,48 @@
+<div class="dashboard">
+  <!-- HEADER -->
+  <div class="header">
+    <h2>Cursos</h2>
+
+    <select (change)="onModuleChange($event)">
+      <option *ngFor="let m of modules" [value]="m.value">
+        {{ m.label }}
+      </option>
+    </select>
+  </div>
+
+  <!-- LOADING -->
+  <p *ngIf="loading()">Cargando cursos...</p>
+
+  <!-- ERROR -->
+  <p class="error" *ngIf="errorMsg()">
+    {{ errorMsg() }}
+  </p>
+
+  <!-- GRID DE CURSOS -->
+  <div class="grid" *ngIf="!loading() && courses().length > 0">
+    <article class="card" *ngFor="let c of courses(); trackBy: trackById">
+      <div class="top">
+        <span class="badge">{{ c.module }}</span>
+        <span class="duration">{{ c.duration }}h</span>
+      </div>
+
+      <h3>{{ c.title }}</h3>
+      <p class="desc">{{ c.description }}</p>
+
+      <!-- ✅ Botón solo para usuario normal -->
+    <button
+      *ngIf="isNormalUser()"
+      type="button"
+      class="btn-add"
+      (click)="addCourse(c.id)"
+      [disabled]="!c.id || addingCourseId() === c.id"
+    >
+      {{ addingCourseId() === c.id ? 'Agregando...' : 'Agregar curso' }}
+    </button>
+    </article>
+  </div>
+
+  <!-- SIN CURSOS -->
+  <p *ngIf="!loading() && courses().length === 0 && !errorMsg()">No hay cursos registrados.</p>
+</div>
+

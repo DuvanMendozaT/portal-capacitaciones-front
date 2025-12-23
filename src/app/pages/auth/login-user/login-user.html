@@ -1,0 +1,54 @@
+<div class="auth">
+  <div class="auth-card">
+    <div class="auth-body">
+
+      <div class="auth-header">
+        <h1 class="auth-title">Login Usuario</h1>
+        <a routerLink="/home" class="btn-back">Volver</a>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <div class="field">
+          <label class="label">Correo</label>
+          <input
+            class="input"
+            formControlName="email"
+            placeholder="correo@dominio.com"
+          />
+          <div class="error-text" *ngIf="submitted && f['email'].errors">
+            <div *ngIf="f['email'].errors?.['required']">Campo obligatorio.</div>
+            <div *ngIf="f['email'].errors?.['email']">Correo inválido.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Contraseña</label>
+          <input
+            type="password"
+            class="input"
+            formControlName="password"
+            placeholder="******"
+          />
+          <div class="error-text" *ngIf="submitted && f['password'].errors">
+            <div *ngIf="f['password'].errors?.['required']">Campo obligatorio.</div>
+          </div>
+        </div>
+
+        <div *ngIf="errorMsg()" class="alert">
+          {{ errorMsg() }}
+        </div>
+
+        <button type="submit" class="btn-success">
+          Ingresar
+        </button>
+
+        <div class="auth-links">
+          <a routerLink="/register">Crear cuenta</a>
+          <span class="dot">·</span>
+          <a routerLink="/login/admin">Soy admin</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

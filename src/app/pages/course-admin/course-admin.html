@@ -1,0 +1,76 @@
+<div class="admin">
+  <!-- Header -->
+  <div class="admin-header">
+    <h2 class="admin-title">Administración de cursos</h2>
+    <p class="admin-subtitle">Crea o edita cursos desde este panel.</p>
+  </div>
+
+  <!-- Mensajes -->
+  <div class="alert alert-success" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+
+  <div class="alert alert-error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <p class="error" *ngIf="courseForm.invalid && courseForm.touched">
+    Por favor completa todos los campos obligatorios
+  </p>
+
+  <!-- Acciones (cuando no hay modo) -->
+  <div class="actions" *ngIf="!mode">
+    <button type="button" class="btn btn-primary" (click)="selectCreate()">Crear curso</button>
+
+    <button type="button" class="btn btn-warning" (click)="selectEdit()">Editar curso</button>
+  </div>
+
+  <!-- Formulario -->
+  <form class="form-card" *ngIf="mode" [formGroup]="courseForm" (ngSubmit)="submit()">
+    <div class="form-header">
+      <h3 class="form-title">{{ mode === 'edit' ? 'Editar curso' : 'Crear curso' }}</h3>
+
+      <button type="button" class="btn-back" (click)="cancel()">Cancelar</button>
+    </div>
+
+    <div class="grid">
+      <div class="field" *ngIf="mode === 'edit'">
+        <label class="label">ID del curso</label>
+        <input class="input" type="number" formControlName="id" />
+      </div>
+
+      <div class="field">
+        <label class="label">Título</label>
+        <input class="input" type="text" formControlName="title" />
+      </div>
+
+      <div class="field">
+        <label class="label">Módulo</label>
+        <select class="input" formControlName="module">
+          <option value="" disabled>Selecciona un módulo</option>
+          <option *ngFor="let m of modules" [value]="m">{{ m }}</option>
+        </select>
+      </div>
+
+      <div class="field field-full">
+        <label class="label">Descripción</label>
+        <textarea class="input textarea" formControlName="description"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="label">Duración</label>
+        <input class="input" type="number" formControlName="duration" />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-success" [disabled]="loading">
+        {{ loading ? 'Guardando...' : mode === 'edit' ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button type="button" class="btn btn-ghost" (click)="cancel()" [disabled]="loading">
+        Volver
+      </button>
+    </div>
+  </form>
+</div>

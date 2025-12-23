@@ -1,0 +1,61 @@
+<div class="auth">
+  <div class="auth-card">
+
+    <div class="auth-header">
+      <h1>Registro</h1>
+      <a routerLink="/home" class="btn-back">Volver</a>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="register()">
+
+      <div class="field">
+        <label>Nombre completo</label>
+        <input class="input" formControlName="fullName" />
+        <div class="error-text" *ngIf="submitted && f['fullName'].errors">
+          <div *ngIf="f['fullName'].errors?.['required']">Campo obligatorio.</div>
+          <div *ngIf="f['fullName'].errors?.['minlength']">Mínimo 3 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Correo</label>
+        <input class="input" formControlName="email" />
+        <div class="error-text" *ngIf="submitted && f['email'].errors">
+          <div *ngIf="f['email'].errors?.['required']">Campo obligatorio.</div>
+          <div *ngIf="f['email'].errors?.['email']">Correo inválido.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" class="input" formControlName="password" />
+        <div class="error-text" *ngIf="submitted && f['password'].errors">
+          <div *ngIf="f['password'].errors?.['required']">Campo obligatorio.</div>
+          <div *ngIf="f['password'].errors?.['minlength']">Mínimo 6 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Confirmar contraseña</label>
+        <input type="password" class="input" formControlName="confirmPassword" />
+        <div class="error-text" *ngIf="submitted && (f['confirmPassword'].errors || !passwordsMatch())">
+          <div *ngIf="f['confirmPassword'].errors?.['required']">Campo obligatorio.</div>
+          <div *ngIf="!passwordsMatch()">Las contraseñas no coinciden.</div>
+        </div>
+      </div>
+
+       <div *ngIf="errorMsg()" class="alert">
+          {{ errorMsg() }}
+        </div>
+        
+      <button type="submit" class="btn-primary w-100">
+        Crear cuenta
+      </button>
+
+      <div class="auth-footer">
+        <a routerLink="/login/user">¿Ya tienes cuenta? Inicia sesión</a>
+      </div>
+
+    </form>
+  </div>
+</div>

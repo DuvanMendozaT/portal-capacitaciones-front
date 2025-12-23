@@ -1,0 +1,45 @@
+.header {
+  height: 60px;
+  padding: 0 16px;
+  background: #1e1e1e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  border-color: #888;
+}
+
+.logout-btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #b00020;
+  background: transparent;
+  color: #ff6b6b;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #b00020;
+  color: #fff;
+}

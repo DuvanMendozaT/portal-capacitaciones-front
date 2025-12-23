@@ -1,0 +1,39 @@
+<header class="header" *ngIf="isLoggedIn()">
+
+  <div class="brand">
+    CoursePortal
+  </div>
+
+  <nav class="nav">
+
+    <!-- Dashboard: USER + ADMIN -->
+    <button class="nav-btn"  *ngIf="isLoggedIn()" (click)="goDashboard()">
+      Dashboard
+    </button>
+
+    <!-- Perfil: solo USER -->
+    <button
+      class="nav-btn"
+      *ngIf="isUser()"
+      (click)="goProfile()"
+    >
+      Perfil
+    </button>
+
+    <!-- Administración: solo ADMIN -->
+    <button
+      class="nav-btn"
+      *ngIf="isAdmin()"
+      (click)="goAdmin()"
+    >
+      Administración
+    </button>
+
+  </nav>
+
+  <!-- LOGOUT -->
+  <button class="logout-btn" *ngIf="isLoggedIn()" (click)="logout()">
+    Cerrar sesión
+  </button>
+
+</header>
