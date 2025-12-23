@@ -9,7 +9,9 @@ import { SimpleResponse } from '../../model/dto/SimpleResponse';
   providedIn: 'root',
 })
 export class Auth {
-  private LOGIN_URL: String = 'http://localhost:8080/auth';
+  //private readonly baseUrl: String = 'http://localhost:8080/auth';
+  private readonly baseUrl: String = 'https://portal-capacitaciones-back.onrender.com/auth';
+  
   private readonly ID_KEY = 'auth_id';
   private readonly TOKEN_KEY = 'auth_token';
   private readonly ROLE_KEY = 'auth_role';
@@ -20,13 +22,13 @@ export class Auth {
   constructor(private http: HttpClient) {}
 
   login(request: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.LOGIN_URL + '/login', request).pipe(
+    return this.http.post<LoginResponse>(this.baseUrl + '/login', request).pipe(
       tap((res) => this.saveSession(res))
     );
   }
   register(request: RegisterRequest): Observable<SimpleResponse> {
     return this.http
-      .post<SimpleResponse>(this.LOGIN_URL + '/register', request)
+      .post<SimpleResponse>(this.baseUrl + '/register', request)
   }
 
   private saveSession(response: LoginResponse): void {

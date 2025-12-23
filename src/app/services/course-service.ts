@@ -9,7 +9,8 @@ import { UserCourseModel } from '../model/UserCourseModel';
   providedIn: 'root',
 })
 export class CourseService {
-  private readonly baseUrl = 'http://localhost:8080';
+  //private readonly baseUrl = 'http://localhost:8080';
+  private readonly baseUrl = 'https://portal-capacitaciones-back.onrender.com';
 
   constructor(private http: HttpClient) {}
 
