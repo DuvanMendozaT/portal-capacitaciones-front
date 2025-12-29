@@ -38,7 +38,7 @@ export class LoginAdmin {
         })
         .subscribe({
           next: () => {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/admin']);
             this.form.reset();
           },
           error: (error) => {

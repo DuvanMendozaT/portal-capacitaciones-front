@@ -1,0 +1,59 @@
+<section class="form-panel" *ngIf="showForm()">
+  <div class="form-header">
+    <h3>{{ mode() === 'create' ? 'Crear curso' : 'Editar curso' }}</h3>
+    <button type="button" class="btn-close" (click)="closeForm()">✕</button>
+  </div>
+
+  <form [formGroup]="courseForm" (ngSubmit)="submit()">
+    <div class="field">
+      <label>Título</label>
+      <input class="input" formControlName="title" />
+    </div>
+
+    <div class="field">
+      <label>Módulo</label>
+      <select class="input" formControlName="module">
+        <option value="Fullstack">Fullstack</option>
+        <option value="APIs e Integraciones">APIs e Integraciones</option>
+        <option value="Cloud">Cloud</option>
+        <option value="Data Engineer">Data Engineer</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Descripción</label>
+      <textarea class="input" rows="3" formControlName="description"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Duración (h)</label>
+      <input class="input" type="number" formControlName="duration" />
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" (click)="closeForm()">Cancelar</button>
+      <button type="submit" class="btn-save" [disabled]="loading()">
+        {{ mode() === 'create' ? 'Crear' : 'Guardar cambios' }}
+      </button>
+    </div>
+  </form>
+</section>
+
+<app-dashboard
+  title="Administrar cursos"
+  [courses]="courses()"
+  [loading]="loading()"
+  [errorMsg]="errorMsg()"
+  [selectedModule]="selectedModule()"
+  [actions]="['edit','delete']"
+  [loadingActionForCourseId]="loadingActionForCourseId"
+  (moduleChange)="onModuleChange($event)"
+  (edit)="openEdit($event)"
+  (remove)="deleteCourse($event)"
+>
+  <button header-actions type="button" class="btn-create" (click)="openCreate()">
+    + Agregar curso
+  </button>
+</app-dashboard>
+
+

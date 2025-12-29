@@ -1,0 +1,59 @@
+<article class="card">
+  <div class="top">
+    <span class="badge">{{ course.module }}</span>
+    <span class="duration">{{ course.duration }}h</span>
+  </div>
+
+  <h3>{{ course.title }}</h3>
+  <p class="desc">{{ course.description }}</p>
+
+  <!-- ✅ PROFILE: STATUS -->
+  <span *ngIf="status" [class]="statusClass()">
+    {{ status }}
+  </span>
+
+  <!-- ✅ PROFILE: BOTÓN PRINCIPAL -->
+  <button
+    *ngIf="has('primary')"
+    type="button"
+    class="btn-complete"
+    (click)="onPrimary()"
+    [disabled]="primaryDisabled || isLoading('primary')"
+  >
+    {{ isLoading('primary') ? primaryLoadingLabel : primaryLabel }}
+  </button>
+
+  <!-- USER: ADD -->
+  <button
+    *ngIf="has('add')"
+    type="button"
+    class="btn-add"
+    (click)="onAdd()"
+    [disabled]="!course.id || isLoading('add')"
+  >
+    {{ isLoading('add') ? 'Agregando...' : 'Agregar curso' }}
+  </button>
+
+  <!-- ADMIN: EDIT/DELETE -->
+  <div class="actions" *ngIf="has('edit') || has('delete')">
+    <button
+      *ngIf="has('edit')"
+      type="button"
+      class="btn-edit"
+      (click)="onEdit()"
+      [disabled]="!course.id || isLoading('edit') || isLoading('delete')"
+    >
+      {{ isLoading('edit') ? 'Editando...' : 'Editar' }}
+    </button>
+
+    <button
+      *ngIf="has('delete')"
+      type="button"
+      class="btn-delete"
+      (click)="onRemove()"
+      [disabled]="!course.id || isLoading('delete') || isLoading('edit')"
+    >
+      {{ isLoading('delete') ? 'Eliminando...' : 'Eliminar' }}
+    </button>
+  </div>
+</article>

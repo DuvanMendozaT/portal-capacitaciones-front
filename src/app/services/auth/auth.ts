@@ -9,8 +9,8 @@ import { SimpleResponse } from '../../model/dto/SimpleResponse';
   providedIn: 'root',
 })
 export class Auth {
-  //private readonly baseUrl: String = 'http://localhost:8080/auth';
-  private readonly baseUrl: String = 'https://portal-capacitaciones-back.onrender.com/auth';
+  private readonly baseUrl: String = 'http://localhost:8080/auth';
+  //private readonly baseUrl: String = 'https://portal-capacitaciones-back.onrender.com/auth';
   
   private readonly ID_KEY = 'auth_id';
   private readonly TOKEN_KEY = 'auth_token';

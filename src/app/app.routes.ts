@@ -9,13 +9,13 @@ export const routes: Routes = [
 
   {
     path: 'home',
-    loadComponent: () => import('./pages/home/home').then((m) => m.Home),
+    loadComponent: () => import('./components/home/home').then((m) => m.Home),
     canActivate: [authenticatedGuard]
   },
 
   {
     path: 'register',
-    loadComponent: () => import('./pages/auth/register/register').then((m) => m.Register),
+    loadComponent: () => import('./components/auth/register/register').then((m) => m.Register),
     canActivate: [authenticatedGuard],
   },
 
@@ -24,13 +24,13 @@ export const routes: Routes = [
     children: [
       {
         path: 'user',
-        loadComponent: () => import('./pages/auth/login-user/login-user').then((m) => m.LoginUser),
+        loadComponent: () => import('./components/auth/login-user/login-user').then((m) => m.LoginUser),
         canActivate: [authenticatedGuard],
       },
       {
         path: 'admin',
         loadComponent: () =>
-          import('./pages/auth/login-admin/login-admin').then((m) => m.LoginAdmin),
+          import(`./components/auth/login-admin/login-admin`).then((m) => m.LoginAdmin),
         canActivate: [authenticatedGuard],
       },
     ],
@@ -38,23 +38,24 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadComponent: () => import('./pages/dashboard/dashboard').then((m) => m.Dashboard),
-    canActivate: [AuthGuard],
+    loadComponent: () => import('./components/user-dashboard/user-dashboard').then((m) => m.UserDashboard),
+    //canActivate: [AuthGuard, roleUserGuard],
   },
+
   {
     path: 'admin',
-    loadComponent: () => import('./pages/course-admin/course-admin').then((m) => m.CourseAdmin),
-    canActivate: [AuthGuard, roleAdminGuard],
+    loadComponent: () => import('./components/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
+    //canActivate: [AuthGuard, roleAdminGuard],
   },
   {
     path: 'profile',
-    loadComponent: () => import('./pages/profile/profile').then((m) => m.ProfileComponent),
+    loadComponent: () => import('./components/profile/profile').then((m) => m.ProfileComponent),
     canActivate: [AuthGuard, roleUserGuard],
   },
 
   {
     path: 'certificate/:courseId',
-    loadComponent: () => import('./pages/certificate/certificate').then((m) => m.Certificate),
+    loadComponent: () => import('./components/certificate/certificate').then((m) => m.Certificate),
     canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: 'home' },

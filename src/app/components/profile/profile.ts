@@ -4,11 +4,12 @@ import { CourseService } from '../../services/course-service';
 import { Auth } from '../../services/auth/auth';
 import { CourseModel } from '../../model/courseModel';
 import { UserCourseModel } from '../../model/UserCourseModel';
+import { CourseCard } from "../course-card/course-card";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CourseCard],
   templateUrl: './profile.html',
   styleUrls: ['./profile.css'],
 })
@@ -62,7 +63,7 @@ export class ProfileComponent implements OnInit {
     this.completingId.set(course.id);
 
     this.courseService
-      .CompleteCourse({
+      .completeCourse({
         userId: Number(this.auth.getId()),
         courseId: course.id,
         status: 1,

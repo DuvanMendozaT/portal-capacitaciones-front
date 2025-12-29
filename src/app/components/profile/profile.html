@@ -1,0 +1,57 @@
+<div class="dashboard">
+  <div class="header">
+    <h2>Mis cursos</h2>
+  </div>
+
+  <p *ngIf="loading()">Cargando mis cursos...</p>
+
+  <p class="error" *ngIf="errorMsg()">
+    {{ errorMsg() }}
+  </p>
+
+  <!-- ✅ ACTIVOS -->
+  <section *ngIf="!loading() && activeCourses().length > 0" class="section">
+    <h3 class="section-title">Cursos activos</h3>
+
+    <div class="grid">
+      <app-course-card
+        *ngFor="let c of activeCourses(); trackBy: trackById"
+        [course]="c"
+        [status]="c.status"
+        [actions]="['primary']"
+        [loadingAction]="completingId() === c.id ? 'primary' : null"
+        primaryLabel="Marcar como completado"
+        primaryLoadingLabel="Marcando..."
+        [primaryDisabled]="completingId() === c.id"
+        (primary)="markAsCompleted($event)"
+      />
+    </div>
+  </section>
+
+  <!-- ✅ FINALIZADOS -->
+  <section *ngIf="!loading() && completedCourses().length > 0" class="section">
+    <h3 class="section-title">Cursos finalizados</h3>
+
+    <div class="grid">
+      <app-course-card
+        *ngFor="let c of completedCourses(); trackBy: trackById"
+        [course]="c"
+        [status]="c.status"
+        [actions]="['primary']"
+        [loadingAction]="completingId() === c.id ? 'primary' : null"
+        primaryLabel="Ver Insignia"
+        primaryLoadingLabel="Cargando..."
+        [primaryDisabled]="completingId() === c.id"
+        (primary)="viewBadge($event.id)"
+      />
+    </div>
+  </section>
+
+  <p *ngIf="!loading() && myCourses().length === 0 && !errorMsg()">
+    Aún no tienes cursos asignados.
+  </p>
+
+  <p *ngIf="!loading() && myCourses().length > 0 && activeCourses().length === 0 && completedCourses().length === 0">
+    No hay cursos en estado REGISTERED o COMPLETED.
+  </p>
+</div>

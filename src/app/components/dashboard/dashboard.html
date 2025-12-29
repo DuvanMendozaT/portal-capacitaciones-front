@@ -1,0 +1,42 @@
+<div class="dashboard">
+  <!-- HEADER -->
+  <div class="header">
+    <h2>{{ title() }}</h2>
+
+    <div class="header-actions">
+      <select (change)="onModuleChange($event)">
+        <option *ngFor="let m of modules()" [value]="m.value" [selected]="m.value === selectedModule()">
+          {{ m.label }}
+        </option>
+      </select>
+
+      <ng-content select="[header-actions]"></ng-content>
+    </div>
+  </div>
+
+  <!-- LOADING -->
+  <p *ngIf="loading()">Cargando cursos...</p>
+
+  <!-- ERROR -->
+  <p class="error" *ngIf="errorMsg()">
+    {{ errorMsg() }}
+  </p>
+
+  <!-- GRID -->
+  <div class="grid" *ngIf="!loading() && courses().length > 0">
+    <app-course-card
+      *ngFor="let c of courses(); trackBy: trackById"
+      [course]="c"
+      [actions]="actions()"
+      [loadingAction]="loadingActionForCourseId()(c.id)"
+      (add)="add.emit($event)"
+      (edit)="edit.emit($event)"
+      (remove)="remove.emit($event)"
+    />
+  </div>
+
+  <!-- EMPTY -->
+  <p *ngIf="!loading() && courses().length === 0 && !errorMsg()">
+    No hay cursos registrados.
+  </p>
+</div>

@@ -9,8 +9,8 @@ import { UserCourseModel } from '../model/UserCourseModel';
   providedIn: 'root',
 })
 export class CourseService {
-  //private readonly baseUrl = 'http://localhost:8080';
-  private readonly baseUrl = 'https://portal-capacitaciones-back.onrender.com';
+  private readonly baseUrl = 'http://localhost:8080';
+  //private readonly baseUrl = 'https://portal-capacitaciones-back.onrender.com';
 
   constructor(private http: HttpClient) {}
 
@@ -43,7 +43,11 @@ export class CourseService {
     return this.http.post<void>(this.baseUrl + '/usercourse/create', request)
   }
 
-  CompleteCourse(request: UserCourseRequest){
+  completeCourse(request: UserCourseRequest){
     return this.http.post<void>(this.baseUrl + '/usercourse/update', request)
+  }
+
+  deleteCourse(id: number){
+    return this.http.delete<void>(this.baseUrl + '/courses/' + id)
   }
 }

@@ -1,0 +1,11 @@
+<app-dashboard
+  title="Cursos"
+  [courses]="courses()"
+  [loading]="loading()"
+  [errorMsg]="errorMsg()"
+  [selectedModule]="selectedModule()"
+  [actions]="['add']"
+  [loadingActionForCourseId]="loadingActionForCourseId"
+  (moduleChange)="onModule($event)"
+  (add)="addCourse($event)"
+/>

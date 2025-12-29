@@ -7,7 +7,9 @@
   <nav class="nav">
 
     <!-- Dashboard: USER + ADMIN -->
-    <button class="nav-btn"  *ngIf="isLoggedIn()" (click)="goDashboard()">
+    <button 
+    class="nav-btn"  
+    *ngIf="isUser()" (click)="goDashboard()">
       Dashboard
     </button>
 

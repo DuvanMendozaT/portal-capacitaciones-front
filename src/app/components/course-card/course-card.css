@@ -1,0 +1,177 @@
+/* ===== TARJETA ===== */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== HEADER DE LA CARD ===== */
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* ===== BADGE MODULO ===== */
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #649238, #1ec408);
+  color: #ffffff;
+}
+
+/* ===== DURACION ===== */
+.duration {
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* ===== TITULO ===== */
+.card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 6px 0;
+  line-height: 1.3;
+}
+
+/* ===== DESCRIPCION ===== */
+.desc {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.45;
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+
+/* ===== BOTON ADD (USER) ===== */
+.btn-add {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn-add:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn-add:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== ACTIONS (ADMIN) ===== */
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-edit,
+.btn-delete {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Edit */
+.btn-edit {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+}
+
+/* Delete */
+.btn-delete {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #ffffff;
+}
+
+.btn-edit:hover:not(:disabled),
+.btn-delete:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn-edit:disabled,
+.btn-delete:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== BOTÓN PRINCIPAL (PROFILE / PRIMARY ACTION) ===== */
+.btn-complete {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #ffffff;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Hover */
+.btn-complete:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* Disabled */
+.btn-complete:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.status {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Curso registrado / activo */
+.status-registered {
+  background: #fff7ed;        /* naranja muy suave */
+  color: #9a3412;             /* naranja oscuro */
+  border: 1px solid #fed7aa;
+}
+
+/* Curso completado */
+.status-completed {
+  background: #ecfdf5;        /* verde muy suave */
+  color: #065f46;             /* verde oscuro */
+  border: 1px solid #a7f3d0;
+}
