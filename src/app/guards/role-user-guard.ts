@@ -9,6 +9,6 @@ export const roleUserGuard: CanActivateFn = (route, state) => {
    if(auth.getRole() =="USER"){
     return true
   }else{
-    return router.navigate(['/dashboard']);
+    return router.navigate(['/admin']);
   }
 };

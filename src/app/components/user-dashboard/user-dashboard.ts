@@ -58,7 +58,7 @@ export class UserDashboard {
     return this.actionCourseId() === courseId ? this.actionLoading() : null;
   };
 
-  addCourse(courseId: number): void {
+  addCourse(id: number): void {
     const userIdStr = this.auth.getId();
     if (!userIdStr) {
       this.errorMsg.set('Sesión inválida: no se encontró el usuario.');
@@ -70,14 +70,20 @@ export class UserDashboard {
       return;
     }
 
-    this.actionCourseId.set(courseId);
+    this.actionCourseId.set(id);
     this.actionLoading.set('add');
 
-    this.courseService.assignCourseToUser({ userId, courseId, status: 0 }).subscribe({
+    this.courseService.assignCourseToUser({ userId, courseId: id, status: 0 }).subscribe({
+    
       next: () => this.router.navigate(['/profile']),
       error: (err) => {
+        if(err.status == 409) {
+           this.errorMsg.set('Curso ya asociado al usuario');
+        }else{
+          this.errorMsg.set('No se pudo agregar el curso.');
+        }
         console.error(err);
-        this.errorMsg.set('No se pudo agregar el curso.');
+        this.actionLoading.set(null);
       },
       complete: () => {
         this.actionCourseId.set(null);

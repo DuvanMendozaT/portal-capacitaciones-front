@@ -21,8 +21,8 @@
             placeholder="admin@dominio.com"
           />
           <div class="error-text" *ngIf="submitted && f['email'].errors">
-            <div *ngIf="f['email'].errors?.['required']">Campo obligatorio.</div>
-            <div *ngIf="f['email'].errors?.['email']">Correo inválido.</div>
+            <div *ngIf="f['email'].errors['required']">Campo obligatorio.</div>
+            <div *ngIf="f['email'].errors['email']">Correo inválido.</div>
           </div>
         </div>
 
@@ -35,7 +35,7 @@
             placeholder="******"
           />
           <div class="error-text" *ngIf="submitted && f['password'].errors">
-            <div *ngIf="f['password'].errors?.['required']">Campo obligatorio.</div>
+            <div *ngIf="f['password'].errors['required']">Campo obligatorio.</div>
           </div>
         </div>
 

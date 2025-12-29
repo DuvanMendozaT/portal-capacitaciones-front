@@ -1,41 +1,17 @@
 <header class="header" *ngIf="isLoggedIn()">
-
-  <div class="brand">
-    CoursePortal
-  </div>
+  <div class="brand">CoE de Desarrollo</div>
 
   <nav class="nav">
-
     <!-- Dashboard: USER + ADMIN -->
-    <button 
-    class="nav-btn"  
-    *ngIf="isUser()" (click)="goDashboard()">
-      Dashboard
-    </button>
+    <button class="nav-btn" *ngIf="isUser()" (click)="goDashboard()">Dashboard</button>
 
     <!-- Perfil: solo USER -->
-    <button
-      class="nav-btn"
-      *ngIf="isUser()"
-      (click)="goProfile()"
-    >
-      Perfil
-    </button>
+    <button class="nav-btn" *ngIf="isUser()" (click)="goProfile()">Perfil</button>
 
     <!-- Administración: solo ADMIN -->
-    <button
-      class="nav-btn"
-      *ngIf="isAdmin()"
-      (click)="goAdmin()"
-    >
-      Administración
-    </button>
-
+    <button class="nav-btn" *ngIf="isAdmin()" (click)="goAdmin()">Administración</button>
   </nav>
 
   <!-- LOGOUT -->
-  <button class="logout-btn" *ngIf="isLoggedIn()" (click)="logout()">
-    Cerrar sesión
-  </button>
-
+  <button class="logout-btn" *ngIf="isLoggedIn()" (click)="logout()">Cerrar sesión</button>
 </header>

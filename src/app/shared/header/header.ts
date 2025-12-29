@@ -11,17 +11,11 @@ import { Auth } from '../../services/auth/auth';
   styleUrls: ['./header.css'],
 })
 export class HeaderComponent {
-
-  constructor(
-    private router: Router,
-    private auth: Auth
-  ) {}
-profile = computed(() => this.auth.getProfile());
-isLoggedIn = computed(() => !!this.profile().token);
-isAdmin = computed(() => this.profile().role === 'ADMIN');
-isUser = computed(() => this.profile().role === 'USER');
-
-
+  constructor(private router: Router, private auth: Auth) {}
+  profile = computed(() => this.auth.getProfile());
+  isLoggedIn = computed(() => !!this.profile().id);
+  isAdmin = computed(() => this.profile().role === 'ADMIN');
+  isUser = computed(() => this.profile().role === 'USER');
 
   goDashboard(): void {
     this.router.navigateByUrl('/dashboard');

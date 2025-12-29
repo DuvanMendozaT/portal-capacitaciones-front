@@ -39,13 +39,13 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     loadComponent: () => import('./components/user-dashboard/user-dashboard').then((m) => m.UserDashboard),
-    //canActivate: [AuthGuard, roleUserGuard],
+    canActivate: [AuthGuard, roleUserGuard],
   },
 
   {
     path: 'admin',
     loadComponent: () => import('./components/admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
-    //canActivate: [AuthGuard, roleAdminGuard],
+    canActivate: [AuthGuard, roleAdminGuard],
   },
   {
     path: 'profile',

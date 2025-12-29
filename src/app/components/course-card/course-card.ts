@@ -39,9 +39,9 @@ export class CourseCard {
     return this.loadingAction === a;
   }
 
-  onAdd() { this.add.emit(this.course); }
+  onAdd() { this.add.emit(this.course.id); }
   onEdit() { this.edit.emit(this.course); }
-  onRemove() { this.remove.emit(this.course); }
+  onRemove() { this.remove.emit(this.course.id); }
 
   onPrimary() { this.primary.emit(this.course); }
 
