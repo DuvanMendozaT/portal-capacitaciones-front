@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Auth } from '../../services/auth/auth';
 
 
 @Component({
@@ -10,10 +9,7 @@ import { Auth } from '../../services/auth/auth';
   styleUrl: './home.css',
 })
 export class Home {
-
-   constructor(private router: Router, private auth:Auth) {
-    this.auth.logout();
-   }
+  constructor(private router: Router) {}
 
   //rutas a componentes de Auth
   goToRegister() {
